@@ -17,14 +17,14 @@ root.setThemes([
 var chart = root.container.children.push(
   am5map.MapChart.new(root, {
     panX: "rotateX",
-    projection: am5map.geoAlbersUsa()
+    projection: am5map.geoMercator()
   })
 );
 
 // Create polygon series
 var polygonSeries = chart.series.push(
   am5map.MapPolygonSeries.new(root, {
-    geoJSON: am5geodata_usaLow
+    geoJSON: am5geodata_brazilLow
   })
 );
 
@@ -70,7 +70,7 @@ zoomOut.events.on("click", function() {
   }
   chart.goHome();
   zoomOut.hide();
-  currentSeries = regionalSeries.US.series;
+  currentSeries = regionalSeries.BR.series;
   currentSeries.show();
 });
 zoomOut.hide();
@@ -81,7 +81,7 @@ zoomOut.hide();
 // =================================
 
 // Load store data
-am5.net.load("https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-160/TargetStores.json").then(function(result) {
+am5.net.load("mydata/brazil.json").then(function(result) {
   var stores = am5.JSONParser.parse(result.response);
   setupStores(stores);
 });
@@ -94,13 +94,13 @@ function setupStores(data) {
   console.log(data);
   
   // Init country-level series
-  regionalSeries.US = {
+  regionalSeries.BR = {
     markerData: [],
     series: createSeries("stores")
   };
   
   // Set current series
-  currentSeries = regionalSeries.US.series;
+  currentSeries = regionalSeries.BR.series;
   
   // Process data
   am5.array.each(data.query_results, function(store) {
@@ -117,7 +117,7 @@ function setupStores(data) {
     
     // Process state-level data
     if (regionalSeries[store.state] == undefined) {
-      var statePolygon = getPolygon("US-" + store.state);
+      var statePolygon = getPolygon("BR-" + store.state);
       if (statePolygon) {
         
         var centroid = statePolygon.visualCentroid();
@@ -136,7 +136,7 @@ function setupStores(data) {
             coordinates: [centroid.longitude, centroid.latitude]
           }
         };
-        regionalSeries.US.markerData.push(regionalSeries[store.state]);
+        regionalSeries.BR.markerData.push(regionalSeries[store.state]);
 
       }
       else {
@@ -184,8 +184,8 @@ function setupStores(data) {
     });
     
   });
-  console.log(regionalSeries.US.markerData)
-  regionalSeries.US.series.data.setAll(regionalSeries.US.markerData);
+  console.log(regionalSeries.BR.markerData)
+  regionalSeries.BR.series.data.setAll(regionalSeries.BR.markerData);
 }
 
 // Finds polygon in series by its id
@@ -256,7 +256,7 @@ function createSeries(heatfield) {
       
       // Control zoom
       if (data.type == "state") {
-        var statePolygon = getPolygon("US-" + data.state);
+        var statePolygon = getPolygon("BR-" + data.state);
         polygonSeries.zoomToDataItem(statePolygon.dataItem);
       }
       else if (data.type == "city") {
