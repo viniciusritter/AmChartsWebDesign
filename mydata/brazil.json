@@ -1,12 +1,12 @@
 {"query_results":[  
       {  
-         "co_loc_n":"Porto Alegre",
+         "co_loc_n":"Ivoti",
          "CO_LOC_REF_I":"848",
          "MAIL_ST_PROV_C":"RS",
-         "LNGTD_I":"-99.7672590",
-         "LATTD_I":"32.4054170",
-         "mail_city_n":"Porto Alegre",
-         "count":1128
+         "LNGTD_I":"-89.7672590",
+         "LATTD_I":"35.4054170",
+         "mail_city_n":"Ivoti",
+         "count":1129
       },
       {  
          "co_loc_n":"Porto Alegre",
@@ -27,21 +27,21 @@
          "count":1128
       },
       {  
-         "co_loc_n":"Porto Alegre",
+         "co_loc_n":"Florianópolis",
          "CO_LOC_REF_I":"848",
          "MAIL_ST_PROV_C":"SC",
          "LNGTD_I":"-99.7672590",
          "LATTD_I":"32.4054170",
-         "mail_city_n":"Porto Alegre",
+         "mail_city_n":"Florianópolis",
          "count":1128
       },
       {  
-         "co_loc_n":"Porto Alegre",
+         "co_loc_n":"Florianópolis",
          "CO_LOC_REF_I":"848",
          "MAIL_ST_PROV_C":"SC",
          "LNGTD_I":"-99.7672590",
          "LATTD_I":"32.4054170",
-         "mail_city_n":"Porto Alegre",
+         "mail_city_n":"Florianópolis",
          "count":1128
       },
       {  
